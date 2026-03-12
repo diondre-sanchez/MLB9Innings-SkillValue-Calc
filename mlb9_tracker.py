@@ -18,6 +18,14 @@ from datetime import datetime
 from pathlib import Path
 from collections import defaultdict
 
+import yaml
+
+with open("C:\\Users\\d3\\Documents\\GitHub\\mlb9innings-skillvalue-calc\\mlb-skill-valuecalc\\data\\skills.yaml") as f:
+    data = yaml.safe_load(f)
+
+batter_skills = data["skills"]["batter"]
+pitcher_skills = data["skills"]["pitcher"]
+
 # ── Config ────────────────────────────────────────────────────────────────────
 
 DATA_FILE = Path("mlb9_experiments.json")
@@ -26,138 +34,20 @@ EXPORT_FILE = Path("mlb9_export.csv")
 BATTER_TIERS = ["Bronze", "Silver", "Gold", "Legend"]
 PITCHER_TIERS = ["Bronze", "Silver", "Gold", "Legend"]
 
-BATTER_TIER_RANK = {t: i for i, t in enumerate(BATTER_TIERS)}  # Bronze=0 … Legend=4
-PITCHER_TIER_RANK = {t: i for i, t in enumerate(PITCHER_TIERS)}  # Bronze=0 … Legend=4
-
-BATTER_SKILLS_BY_TIER = {
-    "Bronze": [
-        "Concentration",
-        "Fastball Crusher",
-        "Fielding Specialist",
-        "Going For The First Pitch",
-        "Hawk Eye",
-        "Head-On",
-        "Lefty Specialist",
-        "Pinch Hit Specialist",
-        "Pull Hit",
-        "Push Hit",
-        "RBI Machine",
-        "Righty Specialist",
-    ],
-    "Silver": [
-        "Endurance",
-        "Exhaustion",
-        "Flashing The Leather",
-        "Full Swing Hitter (FSH)",
-        "Heavy Hitter (HH)",
-        "It Aint Over Yet",
-        "Leg Day",
-        "Overcome Weakness",
-        "Pinpoint Strike",
-        "Professional",
-        "Reliable",
-        "Table Setter",
-        "Training Junkie (TJ)",
-    ],
-    "Gold": [
-        "5-Tool Player",
-        "Ace Specialist",
-        "Barrel It Up (BIU)",
-        "Batting Machine (BM)",
-        "Charisma",
-        "Laser Beam",
-        "Master Base Thief (MBT)",
-        "Prediction",
-        "Slugger Instinct (SI)",
-        "Spotlight (SL)",
-        "Spray Hitter",
-        "Strengthen the Strength",
-        "Super Sub",
-    ],
-    "Legend": [
-        "Bad Ball Hitter (BBH)",
-        "Batter's Chemistry (BC)",
-        "Batter's Insight",
-        "Born To Be A Star (BTBS)",
-        "Chance Maker",
-        "Contact Master",
-        "Hard Hitter",
-        "Pioneer",
-        "Strategist",
-    ],
-}
-
-PITCHER_SKILLS_BY_TIER = {
-    "Bronze": [
-        "Breaking Ball Mastery",
-        "Calm Mind",
-        "Danger Zone",
-        "Fearless",
-        "Lefty Specialist",
-        "Lightning Pitch",
-        "Pick-Off King",
-        "Righty Specialist",
-        "Seasoned Pitcher",
-        "Strong Mentality",
-        "Strong Stamina",
-        "Thin Ice",
-    ],
-    "Silver": [
-        "3-4-5 Specialist",
-        "Control Artist",
-        "Field Commander",
-        "Firefighter",
-        "Fixer",
-        "Golden Pitcher (GP)",
-        "Pace Controller",
-        "Pitching Machine (PM)",
-        "Power Pitcher",
-        "Stability",
-        "The Setup Man (SUM)",
-        "Warmed Up",
-        "Winning Streak",
-    ],
-    "Gold": [
-        "Ace",
-        "Cleaning Up Your Mess (CUYM)",
-        "Crossfire",
-        "Dominant Pitcher (Dom / DP)",
-        "Elite Closer",
-        "Finesse Pitcher (Fin / FP)",
-        "Giant Crusher",
-        "Groundballer",
-        "Inning Eater",
-        "Iron Will",
-        "Pitching Coordinator",
-        "Putaway Pitch",
-        "The Last Boss",
-        "The Untouchable",
-    ],
-    "Legend": [
-        "Bullpen Day",
-        "Control Master",
-        "Cooperative Pitching (CP)",
-        "Fireballer",
-        "Mister Perfect (Mr. Perfect)",
-        "Pitchers Chemistry (PC)",
-        "Pitchers Insight",
-        "Slow Starter (SS)",
-        "Workhorse",
-    ],
-}
+BATTER_TIER_RANK = {t: i for i, t in enumerate(BATTER_TIERS)}
+PITCHER_TIER_RANK = {t: i for i, t in enumerate(PITCHER_TIERS)}
 
 BATTER_SKILL_TO_TIER = {
     skill: tier
-    for tier, skills in BATTER_SKILLS_BY_TIER.items()
+    for tier, skills in batter_skills.items()
     for skill in skills
 }
 
 PITCHER_SKILL_TO_TIER = {
     skill: tier
-    for tier, skills in PITCHER_SKILLS_BY_TIER.items()
+    for tier, skills in pitcher_skills.items()
     for skill in skills
 }
-
 
 
 # ANSI colors (auto-disabled if terminal doesn't support them)
