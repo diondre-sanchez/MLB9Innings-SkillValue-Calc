@@ -1,0 +1,117 @@
+skills:
+
+  batter:
+
+    Bronze:
+      - Concentration
+      - Fastball Crusher
+      - Fielding Specialist
+      - Going For The First Pitch
+      - Hawk Eye
+      - Head-On
+      - Lefty Specialist
+      - Pinch Hit Specialist
+      - Pull Hit
+      - Push Hit
+      - RBI Machine
+      - Righty Specialist
+
+    Silver:
+      - Endurance
+      - Exhaustion
+      - Flashing The Leather
+      - Full Swing Hitter (FSH)
+      - Heavy Hitter (HH)
+      - It Aint Over Yet
+      - Leg Day
+      - Overcome Weakness
+      - Pinpoint Strike
+      - Professional
+      - Reliable
+      - Table Setter
+      - Training Junkie (TJ)
+
+    Gold:
+      - 5-Tool Player
+      - Ace Specialist
+      - Barrel It Up (BIU)
+      - Batting Machine (BM)
+      - Charisma
+      - Laser Beam
+      - Master Base Thief (MBT)
+      - Prediction
+      - Slugger Instinct (SI)
+      - Spotlight (SL)
+      - Spray Hitter
+      - Strengthen the Strength
+      - Super Sub
+
+    Legend:
+      - Bad Ball Hitter (BBH)
+      - Batter's Chemistry (BC)
+      - Batter's Insight
+      - Born To Be A Star (BTBS)
+      - Chance Maker
+      - Contact Master
+      - Hard Hitter
+      - Pioneer
+      - Strategist
+
+
+  pitcher:
+
+    Bronze:
+      - Breaking Ball Mastery
+      - Calm Mind
+      - Danger Zone
+      - Fearless
+      - Lefty Specialist
+      - Lightning Pitch
+      - Pick-Off King
+      - Righty Specialist
+      - Seasoned Pitcher
+      - Strong Mentality
+      - Strong Stamina
+      - Thin Ice
+
+    Silver:
+      - 3-4-5 Specialist
+      - Control Artist
+      - Field Commander
+      - Firefighter
+      - Fixer
+      - Golden Pitcher (GP)
+      - Pace Controller
+      - Pitching Machine (PM)
+      - Power Pitcher
+      - Stability
+      - The Setup Man (SUM)
+      - Warmed Up
+      - Winning Streak
+
+    Gold:
+      - Ace
+      - Cleaning Up Your Mess (CUYM)
+      - Crossfire
+      - Dominant Pitcher (Dom / DP)
+      - Elite Closer
+      - Finesse Pitcher (Fin / FP)
+      - Giant Crusher
+      - Groundballer
+      - Inning Eater
+      - Iron Will
+      - Pitching Coordinator
+      - Putaway Pitch
+      - The Last Boss
+      - The Untouchable
+
+    Legend:
+      - Bullpen Day
+      - Control Master
+      - Cooperative Pitching (CP)
+      - Fireballer
+      - Mister Perfect (Mr. Perfect)
+      - Pitchers Chemistry (PC)
+      - Pitchers Insight
+      - Slow Starter (SS)
+      - Workhorse
