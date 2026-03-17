@@ -31,21 +31,21 @@ PITCHER_SKILLS_BY_TIER = data["skills"]["pitcher"]
 DATA_FILE = Path("mlb9_experiments.json")
 EXPORT_FILE = Path("mlb9_export.csv")
 
-BATTER_TIERS = ["Bronze", "Silver", "Gold", "Legend"]
-PITCHER_TIERS = ["Bronze", "Silver", "Gold", "Legend"]
+BATTER_TIERS = ["Bronze", "Silver", "Gold", "Diamond", "Legend"]
+PITCHER_TIERS = ["Bronze", "Silver", "Gold", "Diamond", "Legend"]
 
 BATTER_TIER_RANK = {t: i for i, t in enumerate(BATTER_TIERS)}
 PITCHER_TIER_RANK = {t: i for i, t in enumerate(PITCHER_TIERS)}
 
 BATTER_SKILL_TO_TIER = {
     skill: tier
-    for tier, skills in batter_skills.items()
+    for tier, skills in BATTER_SKILLS_BY_TIER.items()
     for skill in skills
 }
 
 PITCHER_SKILL_TO_TIER = {
     skill: tier
-    for tier, skills in pitcher_skills.items()
+    for tier, skills in PITCHER_SKILLS_BY_TIER.items()
     for skill in skills
 }
 
@@ -63,6 +63,19 @@ TIER_COLORS = {
     "Diamond": lambda t: c(t, "96"),   # bright cyan
     "Legend":  lambda t: c(t, "95"),   # bright magenta
 }
+
+LEVELS_BY_TIER = {
+    "Bronze": [1, 2, 3, 4, 5, 6],
+    "Silver": [1, 2, 3, 4, 5, 6],
+    "Gold": [1, 2, 3, 4, 5, 6],
+    "Diamond": [7, 8],
+    "Legend": [1, 2, 3, 4, 5, 6],
+
+}
+# level_a = pick("Select level", LEVELS_BY_TIER[tier_a], lambda l: f"Level {l}")
+# level_b = pick("Select level", LEVELS_BY_TIER[tier_b], lambda l: f"Level {l}") 
+
+
 
 def tier_str(tier, level=None):
     fn = TIER_COLORS.get(tier, lambda t: t)
@@ -164,7 +177,7 @@ def cmd_log(args=None):
             if raw.isdigit() and 1 <= int(raw) <= len(options):
                 return options[int(raw) - 1]
             print(c("  Invalid choice, try again.", "91"))
-            
+
     skill_type = pick("Select type", ["batter", "pitcher"], lambda x: x.title())
 
     if skill_type == "batter":
@@ -173,19 +186,18 @@ def cmd_log(args=None):
     else:
         skills_by_tier = PITCHER_SKILLS_BY_TIER
         tiers = PITCHER_TIERS
-    
-    # updated    
+
     print()
     print(c("  Skill A (removed):", "33"))
     tier_a = pick("Select tier", tiers, lambda t: tier_str(t))
     skill_a = pick("Select skill", skills_by_tier[tier_a])
-    level_a = pick("Select level", LEVELS, lambda l: f"Level {l}")
+    level_a = pick("Select level", LEVELS_BY_TIER[tier_a], lambda l: f"Level {l}")
 
     print()
     print(c("  Skill B (added):", "96"))
     tier_b = pick("Select tier", tiers, lambda t: tier_str(t))
     skill_b = pick("Select skill", skills_by_tier[tier_b])
-    level_b = pick("Select level", LEVELS, lambda l: f"Level {l}")
+    level_b = pick("Select level", LEVELS_BY_TIER[tier_b], lambda l: f"Level {l}")
 
     print()
     while True:
@@ -199,15 +211,16 @@ def cmd_log(args=None):
     notes = input(c("  Notes (optional, press Enter to skip): ", "90")).strip()
 
     exp = {
-        "id":       data["next_id"],
-        "skill_a":  skill_a,
-        "tier_a":   tier_a,
-        "level_a":  level_a,
-        "skill_b":  skill_b,
-        "tier_b":   tier_b,
-        "level_b":  level_b,
-        "delta":    delta,
-        "notes":    notes,
+        "id": data["next_id"],
+        "skill_type": skill_type,
+        "skill_a": skill_a,
+        "tier_a": tier_a,
+        "level_a": level_a,
+        "skill_b": skill_b,
+        "tier_b": tier_b,
+        "level_b": level_b,
+        "delta": delta,
+        "notes": notes,
         "timestamp": datetime.now().isoformat(timespec="seconds"),
     }
 

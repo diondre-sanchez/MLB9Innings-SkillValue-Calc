@@ -1,0 +1,18 @@
+{
+  "experiments": [
+    {
+      "id": 1,
+      "skill_type": "pitcher",
+      "skill_a": "Groundballer",
+      "tier_a": "Gold",
+      "level_a": 4,
+      "skill_b": "The Untouchable",
+      "tier_b": "Gold",
+      "level_b": 4,
+      "delta": -780.0,
+      "notes": "grienke groundballer to untouchable.",
+      "timestamp": "2026-03-16T19:42:43"
+    }
+  ],
+  "next_id": 2
+}
