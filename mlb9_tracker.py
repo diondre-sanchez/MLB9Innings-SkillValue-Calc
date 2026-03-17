@@ -23,8 +23,8 @@ import yaml
 with open("C:\\Users\\d3\\Documents\\GitHub\\mlb9innings-skillvalue-calc\\mlb-skill-valuecalc\\data\\skills.yaml") as f:
     data = yaml.safe_load(f)
 
-batter_skills = data["skills"]["batter"]
-pitcher_skills = data["skills"]["pitcher"]
+BATTER_SKILLS_BY_TIER = data["skills"]["batter"]
+PITCHER_SKILLS_BY_TIER = data["skills"]["pitcher"]
 
 # ── Config ────────────────────────────────────────────────────────────────────
 
@@ -164,16 +164,27 @@ def cmd_log(args=None):
             if raw.isdigit() and 1 <= int(raw) <= len(options):
                 return options[int(raw) - 1]
             print(c("  Invalid choice, try again.", "91"))
+            
+    skill_type = pick("Select type", ["batter", "pitcher"], lambda x: x.title())
 
+    if skill_type == "batter":
+        skills_by_tier = BATTER_SKILLS_BY_TIER
+        tiers = BATTER_TIERS
+    else:
+        skills_by_tier = PITCHER_SKILLS_BY_TIER
+        tiers = PITCHER_TIERS
+    
+    # updated    
+    print()
     print(c("  Skill A (removed):", "33"))
-    skill_a = pick("Select skill", SKILL_NAMES)
-    tier_a  = pick("Select tier",  TIERS, lambda t: tier_str(t))
+    tier_a = pick("Select tier", tiers, lambda t: tier_str(t))
+    skill_a = pick("Select skill", skills_by_tier[tier_a])
     level_a = pick("Select level", LEVELS, lambda l: f"Level {l}")
 
     print()
     print(c("  Skill B (added):", "96"))
-    skill_b = pick("Select skill", SKILL_NAMES)
-    tier_b  = pick("Select tier",  TIERS, lambda t: tier_str(t))
+    tier_b = pick("Select tier", tiers, lambda t: tier_str(t))
+    skill_b = pick("Select skill", skills_by_tier[tier_b])
     level_b = pick("Select level", LEVELS, lambda l: f"Level {l}")
 
     print()
